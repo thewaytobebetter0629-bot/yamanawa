@@ -4,8 +4,13 @@ import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/zh-TW";
 import { NAV_ROUTES } from "@/lib/site";
 
-// Keep only verified contact destinations.
-const SOCIALS = [{ label: "Email", href: "mailto:yamanawamugu@gmail.com" }];
+// TODO: swap "#" for the real social/contact links once provided.
+const SOCIALS = [
+  { label: "Instagram", href: "#" },
+  { label: "Threads", href: "#" },
+  { label: "LINE", href: "#" },
+  { label: "Email", href: "mailto:yamanawamugu@gmail.com" },
+];
 
 export default function Footer({
   locale,
@@ -43,14 +48,6 @@ export default function Footer({
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href={localePath(locale, "/insights")}
-                  className="text-sm text-[var(--text-body)] hover:text-white"
-                >
-                  {locale === "en" ? "Market notes" : "市場觀察"}
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -85,9 +82,7 @@ export default function Footer({
           <span>
             © {new Date().getFullYear()} YAMANAWA. {footer.rights}
           </span>
-          <span className="tracking-[0.12em] uppercase">
-            {footer.systemLine}
-          </span>
+          <span className="tracking-[0.12em] uppercase">{footer.systemLine}</span>
         </div>
       </div>
     </footer>

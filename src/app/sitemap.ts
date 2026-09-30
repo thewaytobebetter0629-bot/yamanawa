@@ -3,7 +3,7 @@ import { projects } from "@/data/projects";
 import { localePath, locales } from "@/i18n/config";
 import { NAV_ROUTES, SITE_URL } from "@/lib/site";
 
-const ROUTES = ["/", "/insights", ...NAV_ROUTES.map((route) => `/${route}`), ...projects.filter(project => !project.previewOnly).map(project => `/work/${project.slug}`)];
+const ROUTES = ["/", ...NAV_ROUTES.map((route) => `/${route}`), ...projects.filter(project => !project.previewOnly).map(project => `/work/${project.slug}`)];
 const absolute = (path: string) => (path === "/" ? SITE_URL : `${SITE_URL}${path}`);
 
 export default function sitemap(): MetadataRoute.Sitemap {

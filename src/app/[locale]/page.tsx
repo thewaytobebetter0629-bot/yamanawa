@@ -35,8 +35,16 @@ export default async function Home() {
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[0.64rem] tracking-[0.18em] text-[var(--text-caption)] uppercase"><Reveal delay={0.48}><span>{isEnglish ? "Scroll" : "往下瀏覽"}</span></Reveal></div>
       </section>
 
-      <HomeHeroVideo locale={locale} title={{ "zh-TW": "Nike 形象動畫 - again", en: "Nike Brand Film - again" }} src="/video/yamanawa-home-demo.mp4" />
-      <HomeHeroVideo locale={locale} title={{ "zh-TW": "Garmin 產品動畫", en: "Garmin Product Animation" }} src="/video/garmin-product-animation.mp4" />
+      <HomeHeroVideo
+        locale={locale}
+        title={{ "zh-TW": "Nike 形象動畫 - again", en: "Nike Brand Film - again" }}
+        src="/video/yamanawa-home-demo.mp4"
+      />
+      <HomeHeroVideo
+        locale={locale}
+        title={{ "zh-TW": "Garmin 產品動畫", en: "Garmin Product Animation" }}
+        src="/video/garmin-product-animation.mp4"
+      />
 
       <section className="section-padding relative">
         <div className="container-yamanawa flex flex-col items-center text-center">

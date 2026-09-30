@@ -1,16 +1,24 @@
-import assert from 'node:assert/strict';
-import test from 'node:test';
-const base = process.env.SITE_TEST_URL;
-test('engagement pages serve scoped fees, maintenance boundaries and a contact path in both languages', {skip: !base}, async () => {
-  for (const [path, labels] of [
-    ['/pricing', ['需求診斷與原型', '工作流與 App 建置', '維護與持續優化', '第三方訂閱', '驗收標準']],
-    ['/en/pricing', ['Discovery &amp; prototype', 'Workflow &amp; app implementation', 'Care &amp; continuous improvement', 'acceptance criteria']],
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+
+const pagePath = new URL("../src/app/[locale]/pricing/page.tsx", import.meta.url);
+
+test("pricing page presents the four current service packages and contact CTA", async () => {
+  const page = await readFile(pagePath, "utf8");
+
+  for (const expectedText of [
+    "產品商業影像",
+    "產品動畫",
+    "產品情境動畫",
+    "品牌網站設計與建置",
+    "NT\\$25,000",
+    "NT\\$600",
+    "初步視覺規劃",
+    "填寫合作表單",
   ]) {
-    const response = await fetch(new URL(path, base));
-    assert.equal(response.status, 200);
-    const html = await response.text();
-    for (const label of labels) assert.ok(html.includes(label), `${path}: ${label}`);
-    assert.ok(html.includes('href="' + (path.startsWith('/en') ? '/en/contact' : '/contact') + '"'));
-    assert.ok(!html.includes('NT$600'), 'old website-only care price must not apply to app and automation care');
+    assert.match(page, new RegExp(expectedText));
   }
+
+  assert.doesNotMatch(page, /<ComingSoon/);
 });

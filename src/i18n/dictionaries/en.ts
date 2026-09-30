@@ -7,42 +7,33 @@ import type { Dictionary } from "./zh-TW";
  */
 export const en: Dictionary = {
   meta: {
-    title: "YAMANAWA | Automation & Digital Products",
+    title: "YAMANAWA — AI Hybrid Brand Visual Studio",
     titleTemplate: "%s — YAMANAWA",
     description:
-      "Automation workflows, custom apps and brand websites for brands and small teams. From process discovery and prototypes to launch and ongoing improvement.",
+      "YAMANAWA is an AI Hybrid Brand Visual Studio based in Taiwan, combining professional photography and AI to create product visuals, campaigns and scalable brand content systems.",
     keywords: [
       "YAMANAWA",
-      "workflow automation",
-      "custom apps",
-      "web apps",
-      "brand websites",
+      "AI Hybrid Brand Visual Studio",
+      "Product Photography",
+      "AI Product Imagery",
+      "Brand Visual",
+      "AI Campaign",
+      "Brand Content System",
     ],
     pages: {
-      work: {
-        title: "Work",
-        description:
-          "Photography, visual design and motion portfolio from YAMANAWA.",
-      },
+      work: { title: "Work", description: "YAMANAWA selected work — case studies coming soon." },
       services: {
         title: "Services",
         description:
-          "Workflow automation, custom apps, brand websites and AI content.",
+          "Product Visual, AI Visual Campaign, and Brand Content System — detail page coming soon.",
       },
-      about: {
-        title: "About",
-        description:
-          "A Taiwan-based studio connecting design, automation and digital products.",
-      },
+      about: { title: "About", description: "Connecting imagination and reality — the YAMANAWA story." },
       pricing: {
         title: "Pricing",
         description:
-          "Discovery, scoped implementation and ongoing care. Costs and acceptance criteria are agreed before work begins.",
+          "Commercial product imagery, product animation, scene animation and brand websites. Websites from NT$25,000 plus NT$600/month for basic technical maintenance.",
       },
-      contact: {
-        title: "Contact",
-        description: "Start a project with YAMANAWA.",
-      },
+      contact: { title: "Contact", description: "Start a project with YAMANAWA." },
     },
   },
   nav: {
@@ -51,7 +42,7 @@ export const en: Dictionary = {
       work: "Work",
       services: "Services",
       about: "About",
-      pricing: "Engagement",
+      pricing: "Pricing",
       contact: "Contact",
     },
     cta: "Start a Project",
@@ -64,16 +55,13 @@ export const en: Dictionary = {
     switchLabel: "Switch to Chinese",
   },
   intro: {
-    hud: "WORKFLOWS × APPS × DESIGN",
+    hud: "System Active — Real Capture × AI Creation",
     skip: "Skip Intro",
   },
   hero: {
     caption: "AI Hybrid Brand Visual Studio",
     titleLines: ["Rooted in Reality.", "Created for", "Your Brand."],
-    subLines: [
-      "Product photography, AI visuals and motion.",
-      "From product launches to monthly brand content.",
-    ],
+    subLines: ["Product photography, AI visuals and motion.", "From product launches to monthly brand content."],
     viewWork: "View Work",
     startProject: "Start a Project",
     scroll: "Scroll",
@@ -92,20 +80,8 @@ export const en: Dictionary = {
     titleLines: ["YOUR BRAND NEEDS.", "OUR PRODUCTION PLAN."],
     before: "Understand the Brief",
     after: "Plan the Production",
-    limits: [
-      "PRODUCT FEATURES",
-      "BRAND STYLE",
-      "PLATFORMS",
-      "DELIVERABLES",
-      "EXISTING ASSETS",
-      "BUDGET",
-      "TIMELINE",
-    ],
-    transform: [
-      "PHOTOGRAPHY — MATERIALS AND DETAIL",
-      "AI — MODELS AND SCENES",
-      "CONTENT — STILL AND MOTION",
-    ],
+    limits: ["PRODUCT FEATURES", "BRAND STYLE", "PLATFORMS", "DELIVERABLES", "EXISTING ASSETS", "BUDGET", "TIMELINE"],
+    transform: ["PHOTOGRAPHY — MATERIALS AND DETAIL", "AI — MODELS AND SCENES", "CONTENT — STILL AND MOTION"],
     flowCaption: "From Brief to Delivery",
     flow: ["BRIEF", "PLAN", "ASSETS", "CREATE", "DELIVER"],
   },
@@ -131,43 +107,27 @@ export const en: Dictionary = {
     caption: "Five Steps",
     title: "HOW WE WORK",
     steps: [
-      {
-        title: "SHARE YOUR BRIEF",
-        description: "Tell us about your brand, usage, budget and timeline.",
-      },
-      {
-        title: "PLAN THE PRODUCTION",
-        description: "Agree on the visual direction, shoot and deliverables.",
-      },
-      {
-        title: "PREPARE THE ASSETS",
-        description: "Arrange photography or review your existing materials.",
-      },
-      {
-        title: "CREATE THE CONTENT",
-        description: "Combine retouching, AI visuals and motion as planned.",
-      },
-      {
-        title: "DELIVER AND EXTEND",
-        description:
-          "Deliver the agreed formats and discuss future or monthly work.",
-      },
+      { title: "SHARE YOUR BRIEF", description: "Tell us about your brand, usage, budget and timeline." },
+      { title: "PLAN THE PRODUCTION", description: "Agree on the visual direction, shoot and deliverables." },
+      { title: "PREPARE THE ASSETS", description: "Arrange photography or review your existing materials." },
+      { title: "CREATE THE CONTENT", description: "Combine retouching, AI visuals and motion as planned." },
+      { title: "DELIVER AND EXTEND", description: "Deliver the agreed formats and discuss future or monthly work." },
     ],
   },
   cta: {
     eyebrow: "Start",
-    titleLines: ["What should work", "better first?"],
-    subtitle: "Tell us your goal and where work gets stuck.",
+    titleLines: ["YOUR NEXT BRAND VISUAL", "STARTS HERE."],
+    subtitle: "Share your brand, intended use and timeline. We will help plan the production.",
     button: "Start a Project",
   },
   footer: {
-    tagline: "Automation & digital products",
+    tagline: "AI Hybrid Brand Visual Studio",
     location: "Taiwan",
     siteHeading: "Site",
     connectHeading: "Connect",
-    slogan: ["Connect ideas.", "Make work flow."],
+    slogan: ["CREATE FREELY", "BETWEEN IMAGINATION", "AND REALITY."],
     rights: "All rights reserved.",
-    systemLine: "WORKFLOWS × APPS × DESIGN",
+    systemLine: "Real Capture × AI Creation × Brand System",
   },
   comingSoon: {
     body: "This page is under construction.",
@@ -177,12 +137,12 @@ export const en: Dictionary = {
     work: { eyebrow: "Work", title: "SELECTED WORK" },
     services: { eyebrow: "Services", title: "WHAT WE DO" },
     about: { eyebrow: "About", title: "CONNECTING IMAGINATION AND REALITY" },
-    pricing: { eyebrow: "Pricing", title: "How we work together" },
+    pricing: { eyebrow: "Pricing", title: "INVESTMENT" },
   },
   contact: {
     eyebrow: "Contact",
-    title: "What should work better?",
-    body: "Tell us about your process, tools or product idea. We will clarify the scope together. You can also email yamanawamugu@gmail.com.",
+    title: "START A PROJECT",
+    body: "Complete the form below to share your brand and goals, and we will shape an initial visual plan and production direction.",
   },
   notFound: {
     eyebrow: "404",

@@ -55,7 +55,7 @@ export default function Navigation({
             <Logo width={168} preload />
           </Link>
 
-          <div className="hidden items-center gap-10 lg:flex">
+          <div className="hidden items-center gap-10 md:flex">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -67,7 +67,7 @@ export default function Navigation({
             ))}
           </div>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden items-center gap-8 md:flex">
             <LanguageSwitcher locale={locale} switchLabel={switchLabel} />
             <Link
               href={localePath(locale, "/contact")}
@@ -80,7 +80,7 @@ export default function Navigation({
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="text-xs tracking-[0.12em] uppercase text-white lg:hidden"
+            className="text-xs tracking-[0.12em] uppercase text-white md:hidden"
             aria-label={nav.openMenu}
           >
             {nav.menu}
