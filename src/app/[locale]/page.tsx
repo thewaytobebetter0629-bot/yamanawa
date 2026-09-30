@@ -1,133 +1,78 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import HomeHeroVideo from "@/components/home/HomeHeroVideo";
 import Reveal from "@/components/Reveal";
-import SilverButton from "@/components/SilverButton";
-import DeliveryProcess from "@/components/business/DeliveryProcess";
-import WorkflowExplorer from "@/components/business/WorkflowExplorer";
-import { businessServices, pick } from "@/data/business";
-import { localePath } from "@/i18n/config";
 import { alternatesFor, getLocale } from "@/i18n/server";
+
 export async function generateMetadata(): Promise<Metadata> {
   return { alternates: alternatesFor(await getLocale(), "/") };
 }
+
 export default async function Home() {
   const locale = await getLocale();
-  const p = (zh: string, en: string) => pick(locale, zh, en);
+  const isEnglish = locale === "en";
+  const heroTitle = isEnglish ? ["BUILD IMAGINE", "CREATE REAL"] : ["構建想像", "創作真實"];
+  const whyTitle = isEnglish ? ["NOT EVERY FRAME", "NEEDS A STAGE AND MODELS"] : ["不是每個畫面", "都需要場地和模特"];
+  const servicesTitle = isEnglish ? ["WE CAN HELP", "BUILD WHAT YOU NEED"] : ["我們可以幫你完成"];
+  const messageTitle = isEnglish ? ["BUILD IMAGINE", "CREATE REAL"] : ["構建想像", "創作真實"];
+
   return (
     <>
-      <section className="container-yamanawa relative flex min-h-[88vh] flex-col justify-center py-36 md:py-44">
-        <Reveal>
-          <p className="caption-label">
-            YAMANAWA / AUTOMATION & DIGITAL PRODUCTS
-          </p>
-          <h1 className="mt-9 max-w-5xl text-[clamp(2.7rem,6.5vw,6rem)] font-medium leading-[1.12] tracking-[-0.05em]">
-            {p("讓工作，自動前進。", "Make work flow.")}
-            <br />
-            <span className="text-[var(--silver-dark)]">
-              {p("讓想法，成為產品。", "Turn ideas into products.")}
-            </span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--text-body)]">
-            {p(
-              "為品牌與小型團隊建置自動化工作流、客製化 App 與品牌網站。從最值得改善的一件事開始，做出每天用得上的系統。",
-              "Automation, custom apps and brand websites for brands and small teams. Start with the problem that matters most and build a system people use every day.",
-            )}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-7">
-            <SilverButton href={localePath(locale, "/contact")}>
-              {p("聊聊你想改善的工作", "Tell us what needs to work better")}
-            </SilverButton>
-            <Link
-              className="text-sm underline underline-offset-8"
-              href={localePath(locale, "/services")}
-            >
-              {p("探索服務與流程", "Explore services & workflows")} ↗
-            </Link>
-          </div>
-          <p className="mt-12 text-xs tracking-widest text-[var(--text-muted)]">
-            {p(
-              "理解需求 → 做出原型 → 建置上線 → 持續優化",
-              "UNDERSTAND → PROTOTYPE → BUILD → IMPROVE",
-            )}
-          </p>
-        </Reveal>
-      </section>
-      <section className="container-yamanawa section-padding border-t border-[var(--border)]">
-        <p className="caption-label">WHAT WE BUILD</p>
-        <h2 className="mt-5 max-w-3xl text-3xl md:text-5xl leading-tight">
-          {p(
-            "少一點重複操作，多一點成長空間。",
-            "Less repetitive work. More room to grow.",
-          )}
-        </h2>
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {businessServices.map((service) => (
-            <article
-              key={service.slug}
-              className="flex flex-col rounded-2xl border border-[var(--border)] bg-white/[0.02] p-7"
-            >
-              <span className="caption-label">{service.index}</span>
-              <h3 className="mt-7 text-2xl">{service.title[locale]}</h3>
-              <p className="mt-4 leading-relaxed text-[var(--silver-light)]">
-                {service.summary[locale]}
-              </p>
-              <p className="mt-4 text-sm leading-loose text-[var(--text-body)]">
-                {service.description[locale]}
-              </p>
-              <Link
-                className="mt-auto pt-8 text-sm underline underline-offset-8"
-                href={localePath(locale, `/services#${service.slug}`)}
-              >
-                {p("了解這項服務", "Explore this service")} ↗
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
-      <WorkflowExplorer locale={locale} />
-      <DeliveryProcess locale={locale} />
-      <section className="container-yamanawa section-padding">
-        <div className="grid gap-10 border-y border-[var(--border)] py-12 md:grid-cols-2">
-          <div>
-            <p className="caption-label">BUILT TO EVOLVE</p>
-            <h2 className="mt-5 text-3xl leading-tight">
-              {p(
-                "需求會變，系統也應該能成長。",
-                "Needs evolve. Your system should too.",
-              )}
-            </h2>
-          </div>
-          <div>
-            <p className="leading-loose text-[var(--text-body)]">
-              {p(
-                "我們持續研究工具與市場的變化，先用小範圍試行驗證價值，再依實際使用擴充。以節省時間、減少錯誤與使用體驗決定下一步。",
-                "We follow market and technology changes, validate value in a focused pilot, and expand based on real use. Time saved, fewer errors and usability guide the next step.",
-              )}
+      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden pb-24 pt-24 sm:pt-28">
+        <div className="container-yamanawa relative z-10 flex flex-col items-center text-center">
+          <Reveal><p className="caption-label text-[var(--text-caption)]">YAMANAWA</p></Reveal>
+          <Reveal delay={0.12}><p className="mt-5 text-[0.7rem] tracking-[0.22em] text-[var(--silver-dark)] uppercase">{isEnglish ? "COMMERCIAL VISUAL STUDIO" : "商業視覺工作室"}</p></Reveal>
+          <Reveal delay={0.2}>
+            <h1 className="mt-8 max-w-[540px] text-[clamp(2.1rem,3.4vw,3rem)] font-medium leading-[1.04] tracking-[-0.06em] text-white">
+              {heroTitle.map((line) => <span key={line} className="block">{line}</span>)}
+            </h1>
+          </Reveal>
+          <Reveal delay={0.32}>
+            <p className="mt-7 max-w-[520px] text-[0.9rem] leading-relaxed text-[var(--text-body)] sm:text-[1rem]">
+              {isEnglish ? "We combine commercial photography with AI to turn product imagery into motion, scenes, and digital brand assets that can actually be used." : "我們結合專業攝影與 AI，從產品影像到動畫與品牌網站，幫品牌延伸更多能真正使用的視覺內容。"}
             </p>
-            <Link
-              href={localePath(locale, "/insights")}
-              className="mt-7 inline-block text-sm underline underline-offset-8"
-            >
-              {p("閱讀市場觀察與服務方向", "Read our market perspective")} ↗
-            </Link>
+          </Reveal>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[0.64rem] tracking-[0.18em] text-[var(--text-caption)] uppercase"><Reveal delay={0.48}><span>{isEnglish ? "Scroll" : "往下瀏覽"}</span></Reveal></div>
+      </section>
+
+      <HomeHeroVideo locale={locale} title={{ "zh-TW": "Nike 形象動畫 - again", en: "Nike Brand Film - again" }} src="/video/yamanawa-home-demo.mp4" />
+      <HomeHeroVideo locale={locale} title={{ "zh-TW": "Garmin 產品動畫", en: "Garmin Product Animation" }} src="/video/garmin-product-animation.mp4" />
+
+      <section className="section-padding relative">
+        <div className="container-yamanawa flex flex-col items-center text-center">
+          <Reveal><p className="caption-label">WHY YAMANAWA</p></Reveal>
+          <Reveal delay={0.12}><h2 className="mt-7 max-w-[700px] text-[clamp(1.9rem,3vw,2.8rem)] font-medium leading-[1.06] tracking-[-0.055em] text-white">{whyTitle.map((line) => <span key={line} className="block">{line}</span>)}</h2></Reveal>
+          <Reveal delay={0.24}><p className="mt-8 max-w-[700px] text-[0.92rem] leading-relaxed text-[var(--text-body)] sm:text-[1rem]">{isEnglish ? "A commercial image set often involves much more than a camera. Locations, models, props, sets, and production schedules all add complexity. YAMANAWA starts by photographing the product accurately, then uses AI to extend the scenes, people, and motion that matter most. The goal is to keep production resources focused on what really matters and turn one product into more usable visual content." : "一組商業影像，常常不只是一台相機的成本。場地、模特、道具、搭景和檔期，都會讓一次製作變得更複雜。YAMANAWA 先把產品本身拍準，再透過 AI 延伸需要的場景、人物與動態。把製作資源留在真正重要的地方，也讓一個產品能延伸出更多內容。"}</p></Reveal>
+          <div className="mt-16 grid w-full max-w-[1100px] gap-8 text-center md:grid-cols-3">
+            {[
+              { num: "01", title: isEnglish ? "Reduce production" : "減少製作", text: isEnglish ? "Lower dependence on locations, models, props, and staging." : "降低對場地、模特與搭景的依賴。" },
+              { num: "02", title: isEnglish ? "Keep it real" : "保留真實", text: isEnglish ? "Product proportions, materials, and details remain grounded in the real capture." : "產品的比例、材質與細節先透過實拍留下來。" },
+              { num: "03", title: isEnglish ? "Extend continuously" : "持續延伸", text: isEnglish ? "One product asset can evolve into new scenes, motion, and campaign content over time." : "同一套產品素材，可以持續發展新的畫面與內容。" },
+            ].map((item, index) => <Reveal key={item.num} delay={0.1 * index}><div className="border-t border-[var(--border)] pt-6 text-center"><div className="text-[0.68rem] tracking-[0.2em] text-[var(--silver-dark)]">{item.num}</div><h3 className="mt-5 text-[1.08rem] font-medium tracking-[-0.04em] text-white">{item.title}</h3><p className="mt-3 text-[0.9rem] leading-relaxed text-[var(--text-body)]">{item.text}</p></div></Reveal>)}
           </div>
         </div>
       </section>
-      <section className="container-yamanawa section-padding text-center">
-        <p className="caption-label">LET’S START WITH ONE THING</p>
-        <h2 className="mx-auto mt-6 max-w-3xl text-3xl md:text-5xl leading-tight">
-          {p("哪一件事，值得先做得更好？", "What should work better first?")}
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl leading-relaxed text-[var(--text-body)]">
-          {p(
-            "告訴我們你現在怎麼工作、卡在哪裡，以及想達成什麼。我們一起找出適合的起點。",
-            "Tell us how you work, where it gets difficult, and what you want to achieve. We’ll identify a practical starting point together.",
-          )}
-        </p>
-        <div className="mt-9">
-          <SilverButton href={localePath(locale, "/contact")}>
-            {p("開始需求討論", "Start a conversation")}
-          </SilverButton>
+
+      <section className="section-padding relative">
+        <div className="container-yamanawa flex flex-col items-center text-center">
+          <Reveal><p className="caption-label">SERVICES</p></Reveal>
+          <Reveal delay={0.12}><h2 className="mt-7 text-[clamp(1.9rem,3vw,2.8rem)] font-medium leading-[1.06] tracking-[-0.055em] text-white">{servicesTitle.map((line) => <span key={line} className="block">{line}</span>)}</h2></Reveal>
+          <div className="mt-16 grid w-full max-w-[1100px] gap-6 text-center md:grid-cols-2">
+            {[
+              { num: "01", title: isEnglish ? "Commercial product imagery" : "產品商業影像", text: isEnglish ? "Product photography and AI-driven commercial scenes." : "產品實拍與 AI 商業情境。" },
+              { num: "02", title: isEnglish ? "Product motion" : "產品動畫", text: isEnglish ? "Turn product form and detail into moving visuals." : "讓產品的外型與細節進入動態畫面。" },
+              { num: "03", title: isEnglish ? "Product scenario motion" : "產品情境動畫", text: isEnglish ? "Blend product, people, and setting into a complete brand scene." : "結合產品、人物與場景，製作更完整的品牌情境。" },
+              { num: "04", title: isEnglish ? "Brand website" : "品牌網站", text: isEnglish ? "Structure and visual direction for a refined digital brand entry." : "從網站架構到視覺呈現，整理品牌完整的數位入口。" },
+            ].map((service, index) => <Reveal key={service.num} delay={0.08 * index}><div className="border-t border-[var(--border)] py-7 md:py-8"><div className="text-[0.68rem] tracking-[0.2em] text-[var(--silver-dark)]">{service.num}</div><h3 className="mt-5 text-[clamp(1.2rem,2vw,1.7rem)] font-medium tracking-[-0.04em] text-white">{service.title}</h3><p className="mx-auto mt-3 max-w-[420px] text-[0.88rem] leading-relaxed text-[var(--text-body)]">{service.text}</p></div></Reveal>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding relative pb-28">
+        <div className="container-yamanawa flex flex-col items-center text-center">
+          <Reveal><p className="caption-label text-[var(--text-caption)]">YAMANAWA</p></Reveal>
+          <Reveal delay={0.12}><h2 className="mt-7 text-[clamp(2rem,3vw,2.9rem)] font-medium leading-[1.04] tracking-[-0.055em] text-white">{messageTitle.map((line) => <span key={line} className="block">{line}</span>)}</h2></Reveal>
+          <Reveal delay={0.24}><p className="mt-7 text-[0.68rem] tracking-[0.22em] text-[var(--silver-dark)] uppercase">PHOTOGRAPHY / AI / MOTION / WEB</p></Reveal>
         </div>
       </section>
     </>
