@@ -1,0 +1,390 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   YAMANAWA DESIGN SYSTEM
+   Deep Space Black × Metallic Silver × Precision Typography
+   ========================================================================== */
+
+:root {
+  /* ---- Color: Black (space) ---- */
+  --black: #000000;
+  --black-secondary: #070707;
+  --surface: #0d0d0d;
+  --surface-raised: #121212;
+
+  /* ---- Color: Silver (technology) ---- */
+  --silver-bright: #e3e3e3;
+  --silver: #b9bcc1;
+  --silver-dark: #72767d;
+
+  /* ---- Color: Text (information) ---- */
+  --white: #ffffff;
+  --text-secondary: #e5e5e5;
+  --text-body: #b3b3b3;
+  --text-muted: #777777;
+  --text-caption: #646464;
+
+  /* ---- Border / hairline ---- */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --border-faint: rgba(255, 255, 255, 0.03);
+
+  /* ---- Metallic gradient (sparing use only) ---- */
+  --gradient-silver: linear-gradient(
+    135deg,
+    #707070 0%,
+    #f5f5f5 45%,
+    #9b9b9b 65%,
+    #ffffff 100%
+  );
+
+  /* ---- Spacing scale ---- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 9rem;
+  --space-4xl: 13rem;
+
+  /* section vertical rhythm */
+  --section-padding-y: clamp(5rem, 12vw, 10rem);
+  --container-padding-x: clamp(1.25rem, 5vw, 4rem);
+  --container-max: 1600px;
+
+  /* ---- Radius (spec: 0-4px, never pill) ---- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* ---- Motion ---- */
+  --ease-precise: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 400ms;
+  --duration-base: 700ms;
+  --duration-slow: 1200ms;
+  --duration-section: 1400ms;
+
+  /* ---- Letter spacing ---- */
+  --tracking-tight: -0.03em;
+  --tracking-normal: -0.01em;
+  --tracking-technical: 0.12em;
+
+  /* ---- Fluid type scale ---- */
+  --fs-hero: clamp(2.75rem, 9vw, 10rem);
+  --fs-display: clamp(2.5rem, 7.5vw, 7.5rem);
+  --fs-heading: clamp(2.25rem, 5.5vw, 5rem);
+  --fs-subheading: clamp(1.375rem, 2.4vw, 2rem);
+  --fs-body: clamp(0.9375rem, 1.1vw, 1.125rem);
+  --fs-caption: clamp(0.6875rem, 0.9vw, 0.8125rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--black);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-sans), var(--font-tc), -apple-system, "PingFang TC",
+    "Noto Sans TC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--silver-bright);
+  color: var(--black);
+}
+
+/* ---- Utility layer: repeated patterns across the spec ---- */
+
+.container-yamanawa {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.section-padding {
+  padding-block: var(--section-padding-y);
+}
+
+.text-gradient-silver {
+  background: var(--gradient-silver);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: var(--border);
+}
+
+.hairline-soft {
+  height: 1px;
+  width: 100%;
+  background: var(--border-soft);
+}
+
+.caption-label {
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-technical);
+  text-transform: uppercase;
+  color: var(--text-caption);
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Custom cursor (desktop only, applied via JS toggling a body class) */
+.cursor-none-desktop {
+  cursor: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .cursor-none-desktop {
+    cursor: auto;
+  }
+}
+
+/* ==========================================================================
+   BRAND INTRO — logo particle animation → Hero handoff
+   State lives on html[data-intro]; see src/lib/intro.ts.
+   ========================================================================== */
+
+html {
+  /* no layout jump on Windows when the intro's scroll lock releases */
+  scrollbar-gutter: stable;
+}
+
+html[data-intro="play"] {
+  overflow: hidden;
+  /* failsafe: if the app bundle never boots, give the page back anyway */
+  animation: intro-unlock 0s linear 9s forwards;
+}
+
+.brand-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--black);
+  cursor: pointer;
+  transition:
+    opacity 1100ms var(--ease-smooth),
+    visibility 0s linear 1100ms;
+  animation: intro-failsafe 700ms var(--ease-smooth) 9s forwards;
+}
+
+.brand-intro[data-fast] {
+  transition-duration: 550ms, 0s;
+  transition-delay: 0s, 550ms;
+}
+
+html[data-intro="exit"] .brand-intro {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html[data-intro="done"] .brand-intro,
+html[data-intro="skip"] .brand-intro,
+html:not([data-intro]) .brand-intro {
+  display: none;
+}
+
+.brand-intro__video {
+  flex: none;
+  /* the wordmark ends at 62.8% of the frame: ≈560px on desktop, ≈63vw on phones */
+  width: min(892px, 100vw);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--black);
+  /* the clip settles on #0f0f0f; lift contrast so it sits on the site's pure black */
+  filter: contrast(1.12);
+  /* feather the square frame away into the surrounding black */
+  -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  transition:
+    transform 1100ms var(--ease-precise),
+    filter 1100ms var(--ease-precise);
+}
+
+html[data-intro="exit"] .brand-intro__video {
+  transform: scale(1.06);
+  filter: contrast(1.12) blur(6px);
+}
+
+.brand-intro__hud,
+.brand-intro__skip {
+  position: absolute;
+  bottom: 2rem;
+  padding-block: 0.75rem;
+  animation: intro-hud-in 900ms var(--ease-smooth) 700ms both;
+}
+
+.brand-intro__hud {
+  left: var(--container-padding-x);
+}
+
+.brand-intro__skip {
+  right: var(--container-padding-x);
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-precise);
+}
+
+.brand-intro__skip:hover,
+.brand-intro__skip:focus-visible {
+  color: var(--white);
+}
+
+.brand-intro__skip:focus-visible {
+  outline: 1px solid var(--silver);
+  outline-offset: 6px;
+}
+
+.brand-intro__progress {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--silver-bright);
+  opacity: 0.4;
+  transform-origin: left center;
+  transform: scaleX(var(--intro-progress, 0));
+}
+
+/* ---- Handoff: Hero and nav sharpen in as the overlay leaves ---- */
+
+.intro-reveal,
+.intro-reveal-scene {
+  transition-property: filter, transform, opacity;
+  transition-timing-function: var(--ease-precise);
+}
+
+.intro-reveal {
+  transition-duration: 1200ms;
+}
+
+.intro-reveal-scene {
+  transition-duration: 1800ms;
+}
+
+html[data-intro="exit"] .intro-reveal {
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html[data-intro="play"] .intro-reveal {
+  filter: blur(10px);
+  transform: translateY(18px);
+}
+
+html[data-intro="play"] .intro-reveal-scene {
+  opacity: 0;
+  transform: scale(1.08);
+}
+
+html[data-intro="play"] .intro-reveal-nav {
+  opacity: 0;
+}
+
+html[data-intro="exit"] .intro-reveal-nav {
+  transition-delay: 500ms;
+}
+
+@keyframes intro-unlock {
+  to {
+    overflow: visible;
+  }
+}
+
+@keyframes intro-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@keyframes intro-hud-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .brand-intro__hud {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   LOCALE TYPOGRAPHY
+   ========================================================================== */
+
+/* Negative tracking tightens Latin display type; CJK glyphs already sit on a
+   full em square and crowd together with it. */
+html[lang^="zh"] {
+  --tracking-tight: 0em;
+  --tracking-normal: 0em;
+  /* "在想像與真實之間" is eight full-width glyphs: a 40px floor keeps it on one
+     line down to 375px phones instead of stranding 間 on its own line. */
+  --fs-hero: clamp(2.5rem, 9vw, 10rem);
+}
+
+/* The English hero runs to "Between Imagination" — scaled down so that line
+   holds from 390px phones up. */
+html[lang="en"] {
+  --fs-hero: clamp(2.25rem, 7vw, 7.5rem);
+}
+
+/* Display headings at 36–160px: balance line lengths so a wrap never leaves a
+   lone word ("YET.") on the last line. Explicit <br> breaks are unaffected. */
+main h1,
+main h2 {
+  text-wrap: balance;
+}
